@@ -3,10 +3,12 @@ const urls = ["/", "main.js", "style.css", "chewie.jpg"];
 let userClient;
 
 self.addEventListener("install", (e) => {
-  e.waitUntil(async () => {
-    const cache = await caches.open("cache-v1");
+  const doCache = async () => {
+    const cache = await caches.open(cacheVersion);
     return cache.addAll(urls);
-  });
+  };
+
+  e.waitUntil(doCache());
 });
 
 self.addEventListener("fetch", async (e) => {
