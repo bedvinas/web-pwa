@@ -1,4 +1,13 @@
+let cacheVersion = "cache-v1";
+const urls = ["/", "main.js", "style.css", "chewie.jpg"];
 let userClient;
+
+self.addEventListener("install", (e) => {
+  e.waitUntil(async () => {
+    const cache = await caches.open("cache-v1");
+    return cache.addAll(urls);
+  });
+});
 
 self.addEventListener("fetch", async (e) => {
   try {
