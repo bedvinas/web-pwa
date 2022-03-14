@@ -16,14 +16,14 @@ if ("serviceWorker" in navigator) {
       console.log("ServiceWorker registration failed: ", err);
     }
   );
-}
 
-let clickCount = 0;
-navigator.serviceWorker.addEventListener("message", (e) => {
-  clickCount++;
-  counter.innerText = clickCount;
-  console.log(clickCount);
-});
+  let clickCount = 0;
+  navigator.serviceWorker.addEventListener("message", (e) => {
+    clickCount++;
+    counter.innerText = clickCount;
+    //console.log(clickCount);
+  });
+}
 
 for (const fileType of ["text/css", "text/html", "application/json"]) {
   // Clone the template for each box
