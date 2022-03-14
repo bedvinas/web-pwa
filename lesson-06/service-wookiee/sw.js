@@ -58,3 +58,12 @@ self.addEventListener("fetch", (e) => {
     console.log("Error in file check event " + error);
   }
 });
+
+self.addEventListener("fetch", (e) => {
+  e.respondWith(
+    caches.match(e.request).then((cachedResponse) => {
+      // It can update the cache to serve updated content on the next request
+      return cachedResponse || fetch(e.request);
+    })
+  );
+});
